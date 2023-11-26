@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 
 const TimerComponent = () => {
   const [timerData, setTimerData] = useState({
@@ -10,21 +10,9 @@ const TimerComponent = () => {
   const [tasks, setTasks] = useState([]);
   const [formattedTime, setFormattedTime] = useState('00:00');
 
-  useEffect(() => {
-    // Set the initial timer value to 25 minutes (25 * 60 seconds)
-    setTimerData({
-      timer: 25 * 60,
-      timeOption: 0,
-      isRunning: false,
-    });
-
-    // For demonstration purposes, initializing tasks with some sample data
-    setTasks(['Task 1', 'Task 2', 'Task 3']);
-  }, []);
-
-  const updateTime = () => {
-    if (timerData.isRunning && timerData.timer > 0) {
-      setTimerData((prevData) => {
+  const updateTime = useCallback(() => {
+    setTimerData((prevData) => {
+      if (prevData.isRunning && prevData.timer > 0) {
         const newTimer = prevData.timer - 1;
   
         // Format the timer value into minutes and seconds
@@ -32,27 +20,30 @@ const TimerComponent = () => {
         const seconds = newTimer % 60;
         setFormattedTime(`${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`);
   
+        if (newTimer === 0) {
+          alert('Timer is up!');
+          return {
+            ...prevData,
+            isRunning: false,
+          };
+        }
+  
         return {
           ...prevData,
           timer: newTimer,
         };
-      });
-    } else if (timerData.timer === 0 && timerData.isRunning) {
-      setTimerData((prevData) => ({
-        ...prevData,
-        isRunning: false,
-      }));
-      alert('Timer is up!');
-    }
-  };
+      }
   
+      return prevData;
+    });
+  }, []);
   
 
   useEffect(() => {
     updateTime();
     const intervalId = setInterval(updateTime, 1000);
     return () => clearInterval(intervalId);
-  }, [timerData.isRunning, timerData.timer]);
+  }, [updateTime]);
 
   const handleStartTimer = () => {
     setTimerData((prevData) => ({
