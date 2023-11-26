@@ -7,7 +7,7 @@ import firebase from 'firebase/app';
 
 const App = () => {
   const [data, setData] = useState(null);
-
+/*
   useEffect(() => {
     const fetchData = async () => {
       const databaseRef = firebase.database().ref('/');
@@ -20,7 +20,7 @@ const App = () => {
 
     fetchData();
   }, []);
-
+*/
   return (
     <div>
       <h1>Pomoroo</h1>
@@ -28,9 +28,11 @@ const App = () => {
       <TimerComponent/>
       <Form/>
       <h1>Your Firebase Data:</h1>
-      {data && (
+      
+      {/* {data && (
         <pre>{JSON.stringify(data, null, 2)}</pre>
-      )}
+      )} */}
+      
     </div>
   );
 };
