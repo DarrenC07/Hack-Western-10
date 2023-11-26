@@ -62,7 +62,7 @@ const Form = () => {
             onChange={handleChange}
             required
           />
-          <label htmlFor="timeOnComputer">Time on Computer:</label>
+          <label htmlFor="timeOnComputer">Time Spent on Computer:</label>
           <input
             type="text"
             name="timeOnComputer"
