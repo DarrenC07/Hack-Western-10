@@ -8,23 +8,51 @@ const TimerComponent = () => {
   });
 
   const [tasks, setTasks] = useState([]);
+  const [formattedTime, setFormattedTime] = useState('00:00');
 
   useEffect(() => {
-    // Your initial setup logic goes here
+    // Set the initial timer value to 25 minutes (25 * 60 seconds)
+    setTimerData({
+      timer: 25 * 60,
+      timeOption: 0,
+      isRunning: false,
+    });
 
     // For demonstration purposes, initializing tasks with some sample data
     setTasks(['Task 1', 'Task 2', 'Task 3']);
   }, []);
 
   const updateTime = () => {
-    // Logic to update time goes here
+    if (timerData.isRunning && timerData.timer > 0) {
+      setTimerData((prevData) => {
+        const newTimer = prevData.timer - 1;
+  
+        // Format the timer value into minutes and seconds
+        const minutes = Math.floor(newTimer / 60);
+        const seconds = newTimer % 60;
+        setFormattedTime(`${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`);
+  
+        return {
+          ...prevData,
+          timer: newTimer,
+        };
+      });
+    } else if (timerData.timer === 0 && timerData.isRunning) {
+      setTimerData((prevData) => ({
+        ...prevData,
+        isRunning: false,
+      }));
+      alert('Timer is up!');
+    }
   };
+  
+  
 
   useEffect(() => {
     updateTime();
     const intervalId = setInterval(updateTime, 1000);
     return () => clearInterval(intervalId);
-  }, []);
+  }, [timerData.isRunning, timerData.timer]);
 
   const handleStartTimer = () => {
     setTimerData((prevData) => ({
@@ -35,7 +63,7 @@ const TimerComponent = () => {
 
   const handleResetTimer = () => {
     setTimerData({
-      timer: 0,
+      timer: 25 * 60,
       timeOption: 0,
       isRunning: false,
     });
@@ -58,12 +86,13 @@ const TimerComponent = () => {
   };
 
   return (
-    <div id="container">
+    <div className="container">
       <div>
         <button onClick={handleStartTimer}>
           {timerData.isRunning ? 'Pause Timer' : 'Start Timer'}
         </button>
         <button onClick={handleResetTimer}>Reset Timer</button>
+        <div id="time">{formattedTime}</div>
       </div>
       <div>
         {tasks.map((taskText, taskNum) => (

@@ -1,11 +1,14 @@
 body {
-    height: 400px;
-    width: 350px;
-    background-color: indianred;
+    background-color: lightcoral;
   }
 
   h1{
     text-align: center ;
     color: white;
     font-size: 40px;
+  }
+
+  h2{
+    text-align: center ;
+    color: white;
   }
