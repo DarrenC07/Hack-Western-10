@@ -50,33 +50,42 @@ const Form = () => {
     <div className="potato">
       <div className="container">
         <form onSubmit={handleSubmit}>
+          <h3>Fill out Form to save daily progress</h3>
+          <label htmlFor="name">Name:</label>
           <input
             type="text"
             name="name"
+            id="name"
             placeholder="Name"
             value={formData.name}
             autoComplete="off"
             onChange={handleChange}
             required
           />
+          <label htmlFor="timeOnComputer">Time on Computer:</label>
           <input
             type="text"
             name="timeOnComputer"
+            id="timeOnComputer"
             placeholder="e.g. 45 min"
             value={formData.timeOnComputer}
             autoComplete="off"
             onChange={handleChange}
           />
+          <label htmlFor="mood">Mood:</label>
           <input
             type="text"
             name="mood"
+            id="mood"
             placeholder="good/bad"
             value={formData.mood}
             autoComplete="off"
             onChange={handleChange}
           />
+          <label htmlFor="message">Message:</label>
           <textarea
             name="message"
+            id="message"
             placeholder="Message"
             value={formData.message}
             autoComplete="off"

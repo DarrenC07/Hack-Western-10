@@ -12,3 +12,26 @@ form{
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
     background-color: #fff;
 }
+label {
+    margin-bottom: 8px; /* Add margin between labels and inputs */
+  }
+  
+  input,
+  textarea {
+    margin-bottom: 16px; /* Add margin between input fields */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  button {
+    margin-top: 16px; /* Add margin above the button */
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+  }
