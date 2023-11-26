@@ -18,7 +18,7 @@ const Form = () => {
     console.log(formData);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     const options = {
@@ -29,21 +29,21 @@ const Form = () => {
       body: JSON.stringify(formData),
     };
 
-    try {
-      const res = await fetch(
-        'https://pomeroo-3fd64-default-rtdb.firebaseio.com/UserData.json',
-        options
-      );
-
-      if (res.ok) {
-        alert('Data saved');
-      } else {
+    fetch(
+      'https://pomeroo-3fd64-default-rtdb.firebaseio.com/UserData.json',
+      options
+    )
+      .then((res) => {
+        if (res.ok) {
+          alert('Data saved. Thanks for filling out the form😊');
+        } else {
+          alert('Error occurred');
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
         alert('Error occurred');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      alert('Error occurred');
-    }
+      });
   };
 
   return (
