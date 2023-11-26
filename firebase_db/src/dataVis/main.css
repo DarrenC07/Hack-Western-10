@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial;
+  }
+  
+  body {
+    background-color: #ffffff; 
+    color: #333;
+  }
+  
+  header {
+    background-color: #094530; /
+    color: rgb(248, 255, 250);
+    text-align: center;
+    padding: 20px 0;
+    border-radius: 1rem;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    padding: 20px;
+  }
+  
+   main {
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: #f6ffdb; 
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .slider-container {
+    margin-bottom: 20px;
+  }
+  
+  .icon {
+    font-size: 1.5rem;
+    margin-right: 10px;
+  }
+  
+  .taipy-slider {
+    color: #87faba;
+    width: 100%;
+    height: 10px;
+    border-radius: 5px;
+    outline: none;
+  }
