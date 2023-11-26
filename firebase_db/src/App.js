@@ -3,7 +3,7 @@ import Form from './components/Form';
 function App() {
   return (
     <>
-      <h1>React App</h1>
+      <h1>Pomoroo - Healthcare</h1>
       <Form/>
     </>
   );

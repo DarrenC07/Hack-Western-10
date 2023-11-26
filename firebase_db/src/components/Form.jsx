@@ -15,12 +15,35 @@ const Form = () => {
       ...formData,
       [name]: value,
     });
+    console.log(formData);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Perform any additional logic or submit the form data
-    console.log(formData);
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    };
+
+    try {
+      const res = await fetch(
+        'https://pomeroo-3fd64-default-rtdb.firebaseio.com/UserData.json',
+        options
+      );
+
+      if (res.ok) {
+        alert('Data saved');
+      } else {
+        alert('Error occurred');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Error occurred');
+    }
   };
 
   return (
